@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<job id="instrumentJob" xmlns="http://www.springframework.org/schema/batch">
+	<job id="job" xmlns="http://www.springframework.org/schema/batch">
 		<step id="load">
 			<tasklet>
 				<chunk reader="instrumentReader" processor="instrumentProcessor" writer="instrumentWriter" commit-interval= "2000"  />
@@ -28,24 +28,24 @@
 					</bean>
 				</property>
 				<property name="fieldSetMapper">
-					<bean class="com.natek.job.InstrumentMapper" />
+					<bean class="com.poland.job.InstrumentMapper" />
 				</property>
 			</bean>
 		</property>
 	</bean>
 
-	<bean id="instrumentProcessor" class="com.natek.job.InstrumentProcessor" >
+	<bean id="instrumentProcessor" class="com.poland.job.InstrumentProcessor" >
 			<constructor-arg ref="validator" />
 			<property name="dataSource" ref="dataSource" />
 			<property name="algorithmExecutor" ref="algContext"></property>
 	</bean>
 	
-	<bean id="algContext" class = "com.natek.algorithm.AlgorithmExecutor"></bean>
+	<bean id="algContext" class = "com.poland.algorithm.AlgorithmExecutor"></bean>
 	
-	<bean id="instrumentCallback" class="com.natek.summary.SummaryInstrumentCallback" />
-    <bean id="customStepListner" class="com.natek.summary.StepListener" />
+	<bean id="instrumentCallback" class="com.poland.summary.SummaryInstrumentCallback" />
+    <bean id="customStepListner" class="com.poland.summary.StepListener" />
 
-	<bean id="instrumentWriter" class="com.natek.job.InstrumentWriter">
+	<bean id="instrumentWriter" class="com.poland.job.InstrumentWriter">
 	</bean>
 
 
@@ -62,7 +62,7 @@
 	
 	<bean id="validator" class="org.springframework.batch.item.validator.SpringValidator">
 		<property name="validator">
-			<bean id="instrumentValidator" class="com.natek.validator.InstrumentValidator"/>
+			<bean id="instrumentValidator" class="com.poland.validator.InstrumentValidator"/>
 		</property>
 	</bean>
 </beans>
