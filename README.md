@@ -18,7 +18,7 @@ mvn clean install
 
 mvn test
 
-The above instruction will run the functional test :  org.springframework.batch.sample.TSRDNatekJobTest as a JUnit Test Case, wich is the entry point for the App.
+The above instruction will run the functional test :  org.springframework.batch.sample.TSRDPolandJobTest as a JUnit Test Case, wich is the entry point for the App.
 
 
 ## Built With

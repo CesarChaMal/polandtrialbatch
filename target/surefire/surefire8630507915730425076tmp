@@ -1,5 +1,5 @@
 #surefire
-#Sat Jul 15 06:20:50 CDT 2017
+#Sat Jul 15 06:24:10 CDT 2017
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=C\:\\Users\\Adolfo_Ruiz\\Documents\\exocerebro\\workspacejava\\polandtrialbatch\\src\\test
 classPathUrl.35=C\:\\Users\\Adolfo_Ruiz\\.m2\\repository\\commons-collections\\commons-collections\\3.2\\commons-collections-3.2.jar
