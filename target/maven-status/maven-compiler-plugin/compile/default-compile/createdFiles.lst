@@ -1,0 +1,10 @@
+org\springframework\batch\sample\jmx\SimpleMessageApplicationEvent.class
+com\poland\domain\job\InstrumentMapper.class
+com\poland\domain\job\InstrumentWriter.class
+org\springframework\batch\sample\jmx\JobExecutionNotificationPublisher.class
+org\springframework\batch\sample\TestNatekJobTest.class
+org\springframework\batch\sample\common\LogAdvice.class
+com\poland\domain\Instrument.class
+org\springframework\batch\sample\jmx\StepExecutionApplicationEventAdvice.class
+com\poland\domain\InstrumentDao.class
+com\poland\domain\job\InstrumentProcessor.class

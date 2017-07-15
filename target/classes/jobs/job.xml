@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<job id="footballJob" xmlns="http://www.springframework.org/schema/batch">
+		<step id="gameLoad">
+			<tasklet>
+				<chunk reader="instrumentReader" processor="instrumentProcessor" writer="instrumentWriter" commit-interval= "2000"  />
+			</tasklet>
+		</step>
+	</job>
+
+	<bean id="instrumentReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+		<property name="resource" value="classpath:data/input/${instruments.file.name}" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="INSTRUMENT_NAME,date,value" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="com.poland.domain.job.InstrumentMapper" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="instrumentProcessor" class="com.poland.domain.job.InstrumentProcessor" >
+			<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="instrumentWriter" class="com.poland.domain.job.InstrumentWriter">
+	</bean>
+
+
+	<bean id="appProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties">
+			<value>
+				instruments.file.name=instruments-large.csv
+			</value>
+		</property>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="order" value="1" />
+	</bean>
+</beans>
