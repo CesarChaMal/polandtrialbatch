@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<job id="footballJob" xmlns="http://www.springframework.org/schema/batch">
+	<job id="polandJob" xmlns="http://www.springframework.org/schema/batch">
 		<step id="gameLoad">
 			<tasklet>
 				<chunk reader="instrumentReader" processor="instrumentProcessor" writer="instrumentWriter" commit-interval= "2000"  />
